@@ -1,3 +1,10 @@
+import AppError from "./../helpers/AppError.js";
+
+const notFound = (req, res, next) => {
+  const error = new AppError(404, `Not Found  ${req.originalUrl}`);
+  next(error);
+};
+
 const errorHandler = (err, req, res, next) => {
   const { status = 500, message = "Something went wrong" } = err;
 
@@ -13,4 +20,4 @@ const errorHandler = (err, req, res, next) => {
   });
 };
 
-export { errorHandler };
+export { notFound, errorHandler };
